@@ -39,6 +39,7 @@ func waitConn(socket string) <-chan net.Conn {
 			if conn, err := net.Dial("unix", socket); err != nil {
 				time.Sleep(time.Millisecond * 2)
 			} else {
+				time.Sleep(time.Millisecond * 10) // artificial wait until the socket is really ready to use
 				chanConn <- conn
 				break
 			}
